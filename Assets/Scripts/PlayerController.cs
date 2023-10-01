@@ -50,11 +50,13 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     private Rigidbody2D rb2d;
+    private Animator animator;
     private BlastEffect blast;
 
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         blast = GetComponent<BlastEffect>();
     }
 
@@ -73,9 +75,15 @@ public class PlayerController : MonoBehaviour
         if (!isDashing)
         {
             if (inputValue == Vector2.zero)
+            {
                 acceleration = 0;
+                animator.SetBool("Moving", false);
+            }
             else
+            {
                 acceleration += accelerationSpeed * Time.deltaTime;
+                animator.SetBool("Moving", true);
+            }
 
 
             acceleration = Mathf.Clamp01(acceleration);
@@ -86,7 +94,7 @@ public class PlayerController : MonoBehaviour
     }
     private void RotatePlayer() 
     {
-        Vector3 lookAtPos = ((transform.position + (Vector3)inputValue) - transform.position) * - 1;
+        Vector3 lookAtPos = ((transform.position + (Vector3)inputValue * 10) - transform.position) * - 1;
 
         transform.up = Vector3.Lerp(transform.up, lookAtPos, Time.deltaTime * rotationSpeed);
     }
