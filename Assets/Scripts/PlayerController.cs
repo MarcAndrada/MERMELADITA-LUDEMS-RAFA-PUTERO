@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private float accelerationSpeed;
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private float rotationSpeed;
 
     private Vector2 inputValue;
     private float acceleration;
@@ -36,18 +38,6 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    #region BlastParry
-
-    [SerializeField] private int pointsCount;
-    [SerializeField] private float maxRadius;
-    [SerializeField] private float startRadius;
-    [SerializeField] private float blastSpeed;
-    [SerializeField] private float startWidth;
-
-    private LineRenderer lineRenderer;
-
-    #endregion 
-
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -55,13 +45,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        inputValue = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+
+        RotatePlayer();
         MovePlayer();
         Parry();
     }
 
     private void MovePlayer()
     {
-        inputValue = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
 
         if (inputValue == Vector2.zero)
@@ -72,13 +64,17 @@ public class PlayerController : MonoBehaviour
 
         acceleration  = Mathf.Clamp01(acceleration);    
 
-
-        inputValue = inputValue.normalized;
-
         // Apply speed
-        rb2d.velocity = inputValue * speed * acceleration * Time.deltaTime;
+        rb2d.velocity = inputValue * speed * acceleration;
+    }
+    private void RotatePlayer() 
+    {
+        Vector3 lookAtPos = ((transform.position + (Vector3)inputValue) - transform.position) * - 1;
+
+        transform.up = Vector3.Lerp(transform.up, lookAtPos, Time.deltaTime * rotationSpeed);
     }
 
+    #region Parry Functions
     private void Parry() {
         //Activar Parry
         if(Input.GetKey(KeyCode.Space) && !isParring && canParry)
@@ -157,33 +153,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    #region Blast
-    private IEnumerator Blast()
-    {
-        float currentRadius = startRadius;
-
-        while (currentRadius < maxRadius)
-        {
-            currentRadius += Time.deltaTime * speed;
-            Draw(currentRadius);
-            yield return null;
-        }
-    }
-
-    private void Draw(float currentRadius)
-    {
-        float angleBetweenPoints = 360.0f / pointsCount;
-
-        for (int i = 0; i <= pointsCount - 1; i++)
-        {
-            float angle = i * angleBetweenPoints * Mathf.Deg2Rad;
-            Vector2 dir = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle));
-            Vector2 pos = dir * currentRadius;
-
-            lineRenderer.SetPosition(i, pos);
-        }
-
-        lineRenderer.widthMultiplier = Mathf.Lerp(0f, startWidth, 1f - currentRadius / maxRadius);
-    }
     #endregion
+
+
 }

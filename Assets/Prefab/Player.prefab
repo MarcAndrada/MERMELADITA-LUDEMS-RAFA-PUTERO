@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1900829567521996940
 SpriteRenderer:
@@ -171,9 +171,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39f8b0105a24204b93529c39a7ef5b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelerationSpeed: 100
-  speed: 5000
-  parryDuration: 0.2
+  accelerationSpeed: 3.5
+  speed: 8
+  parryDuration: 0.05
   parryCD: 1
   minScale: {x: 2, y: 2, z: 2}
   maxScale: {x: 5, y: 5, z: 5}
