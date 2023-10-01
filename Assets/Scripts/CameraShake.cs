@@ -50,14 +50,6 @@ public class CameraShake : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)) 
-        {
-            shakeCamera = true;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        ShakeCamera();
+       
     }
 }
