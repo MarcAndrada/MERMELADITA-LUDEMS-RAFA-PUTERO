@@ -14,7 +14,10 @@ public class CanonController : MonoBehaviour
 
 
     [SerializeField]
-    private float speed; 
+    private float speed;
+
+    [SerializeField]
+    private float timeToSpawnBall;
 
     Rigidbody2D rb2d;
     private void Awake()
@@ -22,13 +25,11 @@ public class CanonController : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            InstantitateEnemies();
-        }
+        Invoke("InstantitateEnemies", timeToSpawnBall); 
     }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -39,8 +40,9 @@ public class CanonController : MonoBehaviour
 
     private void InstantitateEnemies()
     {
-
         BallController currentBall = Instantiate(ball, transform.position, Quaternion.identity).GetComponent<BallController>();
         currentBall.SetPlayerPos(player.transform.position);
+
+        Invoke("InstantitateEnemies", timeToSpawnBall);
     }
 }
