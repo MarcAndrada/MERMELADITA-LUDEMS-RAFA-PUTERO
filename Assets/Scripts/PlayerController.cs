@@ -38,9 +38,12 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+    private BlastEffect blast;
+
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        blast = GetComponent<BlastEffect>();
     }
 
     void Update()
@@ -81,6 +84,7 @@ public class PlayerController : MonoBehaviour
         {
             isParring = true;
             canParry = false;
+            StartCoroutine(blast.Blast());
         }
 
         // Espera la duracion del parry
