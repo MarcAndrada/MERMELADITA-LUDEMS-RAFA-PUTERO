@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour
             isDashing = true;
             canDash = false;
             dashInput = inputValue;
-            Debug.Log("Dashea " + dashInput);
+            animator.SetTrigger("Dash");
         }
 
         if (isDashing)
@@ -212,7 +212,6 @@ public class PlayerController : MonoBehaviour
         {
             isDashing = false;
             dashTimeWaited = 0;
-            Debug.Log("Ha acabado de dashear");
         }
     }
 
@@ -223,7 +222,6 @@ public class PlayerController : MonoBehaviour
         {
             canDash = true;
             dashTimeWaited = 0;
-            Debug.Log("Ya puede dashear");
         }
     }
     #endregion

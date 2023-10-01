@@ -36,7 +36,7 @@ Transform:
   m_Children:
   - {fileID: 4081709759035733412}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4795275880160572073
 Rigidbody2D:
@@ -84,8 +84,8 @@ MonoBehaviour:
   parryCD: 1
   minScale: {x: 0.25, y: 0.25, z: 0.25}
   maxScale: {x: 0.35, y: 0.35, z: 0.35}
-  dashSpeed: 25
-  dashDuration: 0.15
+  dashSpeed: 30
+  dashDuration: 0.1
   dashCD: 2
 --- !u!114 &2662586093565422454
 MonoBehaviour:

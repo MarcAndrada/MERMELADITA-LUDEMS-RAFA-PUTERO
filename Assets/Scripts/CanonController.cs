@@ -8,6 +8,8 @@ public class CanonController : MonoBehaviour
     [SerializeField]
     private GameObject ball;
     [SerializeField]
+    private GameObject laser;
+    [SerializeField]
     private GameObject map;
     [SerializeField]
     private GameObject player;
@@ -18,16 +20,13 @@ public class CanonController : MonoBehaviour
 
     [SerializeField]
     private float timeToSpawnBall;
-
-    Rigidbody2D rb2d;
-    private void Awake()
-    {
-        rb2d = GetComponent<Rigidbody2D>();
-    }
+    [SerializeField]
+    private float timeToSpawnLaser;
 
     private void Start()
     {
-        Invoke("InstantitateEnemies", timeToSpawnBall); 
+        Invoke("InstantitateBalls", timeToSpawnBall); 
+        Invoke("InstantitateLasers", timeToSpawnLaser); 
     }
 
     // Update is called once per frame
@@ -38,11 +37,18 @@ public class CanonController : MonoBehaviour
         transform.RotateAround(point, axis, Time.deltaTime * speed);
     }
 
-    private void InstantitateEnemies()
+    private void InstantitateBalls()
     {
         BallController currentBall = Instantiate(ball, transform.position, Quaternion.identity).GetComponent<BallController>();
         currentBall.SetPlayerPos(player.transform.position);
 
-        Invoke("InstantitateEnemies", timeToSpawnBall);
+        Invoke("InstantitateBalls", timeToSpawnBall);
+    }
+    private void InstantitateLasers()
+    {
+        LaserController currentLaser = Instantiate(laser, transform.position, Quaternion.identity).GetComponent<LaserController>();
+        currentLaser.SetPlayer(player);
+
+        Invoke("InstantitateLasers", timeToSpawnLaser);
     }
 }
