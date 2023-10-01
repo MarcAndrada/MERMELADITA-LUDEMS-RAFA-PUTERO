@@ -16,7 +16,7 @@ public class BlastEffect : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
 
-        lineRenderer.positionCount = pointsCount;
+        lineRenderer.positionCount = pointsCount + 1;
     }
 
     private IEnumerator Blast()
@@ -35,11 +35,11 @@ public class BlastEffect : MonoBehaviour
     {
         float angleBetweenPoints = 360.0f / pointsCount;
 
-        for(int i = 0; i < pointsCount; ++i)
+        for(int i = 0; i <= pointsCount; i++)
         {
             float angle = i * angleBetweenPoints * Mathf.Deg2Rad;
-            Vector3 dir = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle), 0f);
-            Vector3 pos = dir * currentRadius;
+            Vector2 dir = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle));
+            Vector2 pos = dir * currentRadius;
 
             lineRenderer.SetPosition(i, pos);
         }

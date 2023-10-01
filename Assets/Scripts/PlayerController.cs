@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     //Variables de la velocidad
+
     [SerializeField]
     private float accelerationSpeed;
     [SerializeField]
@@ -15,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private float acceleration;
 
 
-    //Variables Parry
+    #region Parry Variables
 
     private bool isParring = false;
     private bool canParry = true;
@@ -33,24 +34,30 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb2d;
 
+    #endregion
+
+    #region BlastParry
+
+    [SerializeField] private int pointsCount;
+    [SerializeField] private float maxRadius;
+    [SerializeField] private float startRadius;
+    [SerializeField] private float blastSpeed;
+    [SerializeField] private float startWidth;
+
+    private LineRenderer lineRenderer;
+
+    #endregion 
 
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         MovePlayer();
         Parry();
     }
-
 
     private void MovePlayer()
     {
@@ -80,7 +87,6 @@ public class PlayerController : MonoBehaviour
             canParry = false;
         }
 
-
         // Espera la duracion del parry
         if (isParring)
         {
@@ -97,7 +103,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
     private void DoingParry()
     {
         timeWaitedParring += Time.deltaTime;
@@ -111,8 +116,6 @@ public class PlayerController : MonoBehaviour
 		    
     }
 
-
-
     private void WaitParryCD()
     {
         timeWaitedParryCD += Time.deltaTime;
@@ -124,8 +127,6 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
-
 
     private void ScalingParry()
     {
@@ -154,6 +155,35 @@ public class PlayerController : MonoBehaviour
             if (transform.localScale.x == minScale.x)
                 lerpProcess = 0;
         }
-
     }
+
+    #region Blast
+    private IEnumerator Blast()
+    {
+        float currentRadius = startRadius;
+
+        while (currentRadius < maxRadius)
+        {
+            currentRadius += Time.deltaTime * speed;
+            Draw(currentRadius);
+            yield return null;
+        }
+    }
+
+    private void Draw(float currentRadius)
+    {
+        float angleBetweenPoints = 360.0f / pointsCount;
+
+        for (int i = 0; i <= pointsCount - 1; i++)
+        {
+            float angle = i * angleBetweenPoints * Mathf.Deg2Rad;
+            Vector2 dir = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle));
+            Vector2 pos = dir * currentRadius;
+
+            lineRenderer.SetPosition(i, pos);
+        }
+
+        lineRenderer.widthMultiplier = Mathf.Lerp(0f, startWidth, 1f - currentRadius / maxRadius);
+    }
+    #endregion
 }
