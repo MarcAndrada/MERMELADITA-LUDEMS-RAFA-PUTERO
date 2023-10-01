@@ -12,24 +12,14 @@ public class ExpandObjectOnContact : MonoBehaviour
 
     #endregion
 
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            StopAllCoroutines();
-            StartCoroutine(GrowAndShrink());
-        }
-    }
-    
-    IEnumerator GrowAndShrink()
+    public IEnumerator GrowAndShrink()
     {
         yield return AnimateScale(bigSize * Vector3.one);
         yield return AnimateScale(defaultSize * Vector3.one);
 
     }
 
-    IEnumerator AnimateScale(Vector3 endSize)
+    private IEnumerator AnimateScale(Vector3 endSize)
     {
         bool endProcess = false;
         Vector3 vel = Vector3.zero;

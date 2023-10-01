@@ -15,11 +15,10 @@ public class BlastEffect : MonoBehaviour
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-
         lineRenderer.positionCount = pointsCount + 1;
     }
 
-    private IEnumerator Blast()
+    public IEnumerator Blast()
     {
         float currentRadius = startRadius;
 
@@ -45,13 +44,5 @@ public class BlastEffect : MonoBehaviour
         }
 
         lineRenderer.widthMultiplier = Mathf.Lerp(0f, startWidth, 1f - currentRadius / maxRadius);
-    }
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartCoroutine(Blast());
-        }
     }
 }
