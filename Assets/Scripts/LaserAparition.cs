@@ -9,34 +9,29 @@ public class LaserAparition : MonoBehaviour
     private Vector2 startVector;
     private BoxCollider2D laserCollision;
     private SpriteRenderer spriteRenderer;
-
-    [SerializeField]
-    private Camera mainCamera;
     private CameraShake _camera;
 
-    [SerializeField]
-    private float R;
-    [SerializeField]
-    private float G;
-    [SerializeField]
-    private float B;
-    [SerializeField]
-    private float A;
-    [SerializeField]
-    private float changeColor;
-
+    [SerializeField] private float changeColor;
     [SerializeField] private float speed;
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private float fadeDelay;
+    [SerializeField] private float alphaValue;
 
     private bool bigger;
-
+   
     private void Start()
     {
         mainCamera = Camera.main;
-        startVector = transform.localScale;
+
+        #region GetComponent
+
         laserCollision = GetComponent<BoxCollider2D>();
-        spriteRenderer= GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         _camera = mainCamera.GetComponent<CameraShake>();
-        A = spriteRenderer.color.a;
+
+        #endregion
+
+        startVector = transform.localScale;
     }
 
     private void Update()
@@ -53,13 +48,16 @@ public class LaserAparition : MonoBehaviour
     {
         _camera.ShakeCamera();
     }
+
     private void Laser()
     {
         if(bigger)
         {
             transform.localScale = new Vector2(startVector.x, startVector.y + speed);
-            spriteRenderer.color = new Color(R, G, B, A + changeColor);
-            A = spriteRenderer.color.a;
+
+
+            StartCoroutine(LaserFade(alphaValue, fadeDelay));
+
             startVector = transform.localScale;
 
             if(startVector.y >= 0.5) 
@@ -70,6 +68,17 @@ public class LaserAparition : MonoBehaviour
             }
 
         }   
+    }
+
+    IEnumerator LaserFade(float alphaValue, float fadeDelay)
+    {
+        float alpha = spriteRenderer.color.a;
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / fadeDelay)
+        {
+            Color newSpriteColor = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, Mathf.Lerp(alpha, alphaValue, t));
+            spriteRenderer.color = newSpriteColor;
+            yield return null;
+        }
     }
 
   

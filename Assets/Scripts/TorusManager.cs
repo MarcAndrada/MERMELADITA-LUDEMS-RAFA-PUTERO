@@ -15,8 +15,11 @@ public class TorusManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        StopAllCoroutines();
-        StartCoroutine(expansion.GrowAndShrink());
-        StartCoroutine(blast.Blast());
+        if (collision.gameObject.CompareTag("Ball"))
+        {
+            StopAllCoroutines();
+            StartCoroutine(expansion.GrowAndShrink());
+            StartCoroutine(blast.Blast());
+        }
     }
 }

@@ -15,10 +15,6 @@ public class BlastEffect : MonoBehaviour
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-    }
-
-    private void FixedUpdate()
-    {
         lineRenderer.positionCount = pointsCount + 1;
     }
 
