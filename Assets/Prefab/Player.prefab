@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1900829567521996940
 SpriteRenderer:
@@ -135,6 +135,9 @@ MonoBehaviour:
   parryCD: 1
   minScale: {x: 0.25, y: 0.25, z: 0.25}
   maxScale: {x: 0.35, y: 0.35, z: 0.35}
+  dashSpeed: 20
+  dashDuration: 0.3
+  dashCD: 2
 --- !u!114 &2662586093565422454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,8 +210,7 @@ LineRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 71ac521084ffbd8469bf610c89b6b890, type: 2}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

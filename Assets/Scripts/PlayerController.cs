@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //Variables de la velocidad
-
-    [SerializeField]
+    #region Movement Variables
+    [Header("Movement"), SerializeField]
     private float accelerationSpeed;
     [SerializeField]
     private float speed;
@@ -16,13 +15,11 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 inputValue;
     private float acceleration;
+    #endregion
 
-
-    #region Parry Variables
-
-    private bool isParring = false;
-    private bool canParry = true;
-    [SerializeField]
+    #region Parry Variables    
+    [Space]
+    [Header("Dash"), SerializeField]
     private float parryDuration = 0.2f;
     private float timeWaitedParring = 0;
     [SerializeField]
@@ -33,11 +30,26 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Vector3 maxScale;
     private float lerpProcess;
-
-    private Rigidbody2D rb2d;
-
+    private bool isParring = false;
+    private bool canParry = true;
     #endregion
 
+    #region Dash Variables
+    [Space]
+    [Header("Dash"), SerializeField]
+    private float dashSpeed;
+    [SerializeField]
+    private float dashDuration;
+    [SerializeField]
+    private float dashCD;
+    private float dashTimeWaited = 0;
+
+    private Vector2 dashInput;
+    private bool isDashing = false;
+    private bool canDash = true;
+    #endregion
+
+    private Rigidbody2D rb2d;
     private BlastEffect blast;
 
     private void Awake()
@@ -51,24 +63,26 @@ public class PlayerController : MonoBehaviour
         inputValue = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
         RotatePlayer();
+        Dash();
         MovePlayer();
         Parry();
     }
 
     private void MovePlayer()
     {
+        if (!isDashing)
+        {
+            if (inputValue == Vector2.zero)
+                acceleration = 0;
+            else
+                acceleration += accelerationSpeed * Time.deltaTime;
 
 
-        if (inputValue == Vector2.zero)
-            acceleration = 0;
-        else
-		    acceleration += accelerationSpeed * Time.deltaTime;
+            acceleration = Mathf.Clamp01(acceleration);
 
-
-        acceleration  = Mathf.Clamp01(acceleration);    
-
-        // Apply speed
-        rb2d.velocity = inputValue * speed * acceleration;
+            // Apply speed
+            rb2d.velocity = inputValue * speed * acceleration;
+        }
     }
     private void RotatePlayer() 
     {
@@ -76,6 +90,8 @@ public class PlayerController : MonoBehaviour
 
         transform.up = Vector3.Lerp(transform.up, lookAtPos, Time.deltaTime * rotationSpeed);
     }
+
+    
 
     #region Parry Functions
     private void Parry() {
@@ -159,5 +175,48 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+    #region Dash Functions
+    private void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            isDashing = true;
+            canDash = false;
+            dashInput = inputValue;
+            Debug.Log("Dashea " + dashInput);
+        }
 
+        if (isDashing)
+        {
+            WaitToStopDash();
+        }
+        else if (!canDash)
+        {
+            WaitDashCD();
+        }
+    }
+
+    private void WaitToStopDash()
+    {
+        dashTimeWaited += Time.deltaTime;
+        rb2d.velocity = dashInput * dashSpeed;
+        if (dashTimeWaited >= dashDuration)
+        {
+            isDashing = false;
+            dashTimeWaited = 0;
+            Debug.Log("Ha acabado de dashear");
+        }
+    }
+
+    private void WaitDashCD()
+    {
+        dashTimeWaited += Time.deltaTime;
+        if (dashTimeWaited >= dashCD)
+        {
+            canDash = true;
+            dashTimeWaited = 0;
+            Debug.Log("Ya puede dashear");
+        }
+    }
+    #endregion
 }
