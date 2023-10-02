@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
-using UnityEngine.Windows.WebCam;
 
 public class CameraShake : MonoBehaviour
 {
