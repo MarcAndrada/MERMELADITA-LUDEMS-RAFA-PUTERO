@@ -43,9 +43,6 @@ public class CanonController : MonoBehaviour
     [SerializeField]
     private List<Transform> sawSpawnPoints;
 
-    [SerializeField]
-    private List<Transform> sawSpawnPoints;
-
     private AudioSource aSource;
 
     private void Awake()
@@ -98,10 +95,6 @@ public class CanonController : MonoBehaviour
         sawSpawnPoints.RemoveAt(randomPoint);
         if (!aSource.isPlaying)
             aSource.PlayOneShot(aSource.clip);
-
-        int randomPoint = Random.Range(0, sawSpawnPoints.Count);
-        Instantiate(sierra, sawSpawnPoints[randomPoint].position, Quaternion.identity).GetComponent<sawControl>();
-        Invoke("InstantiateSaws", timeToSpawnSaw);
     }
 
     public void SetEnabled(bool value)
