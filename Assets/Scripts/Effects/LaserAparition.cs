@@ -71,11 +71,7 @@ public class LaserAparition : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartShoot();
-        }
-
+        StartShoot();
         FadeAnimation();
         GrowLaser();
         ShrinkLaser();
@@ -209,4 +205,8 @@ public class LaserAparition : MonoBehaviour
         laserCollision.enabled = false;
     }
 
+    public void SetPlayer(GameObject _player)
+    {
+        player = _player;
+    }
 }

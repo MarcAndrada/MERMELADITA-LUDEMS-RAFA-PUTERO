@@ -423,10 +423,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3217ad12bc96ef24d9cb9ab812720af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTimeOfGame: 2
+  maxTimeOfGame: 60
   textToPrint: {fileID: 839062910}
   canonController: {fileID: 118468999}
-  player: {fileID: 0}
+  player: {fileID: 541352996}
 --- !u!1 &883832158 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3494818009629027928, guid: 75a1335e7ef5dde4abfc4ba80ae052b4, type: 3}
@@ -941,6 +941,10 @@ PrefabInstance:
       propertyPath: timerController
       value: 
       objectReference: {fileID: 839062912}
+    - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
+      propertyPath: timeToSpawnChargedLaser
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3974365007846975917, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -988,6 +992,10 @@ PrefabInstance:
     - target: {fileID: 8716855625351793501, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
       propertyPath: m_Name
       value: Canon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8716855625351793501, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
