@@ -48,8 +48,10 @@ public class TimerController : MonoBehaviour
             {
                 canonController.gameObject.SetActive(false);
                 timeEnded = true;
+                Destroy(cam.GetComponent<CameraShake>());
                 cam.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, cam.transform.position.z);
                 player.GetComponent<Collider2D>().enabled = false;
+                player.GetComponent<Rigidbody2D>().simulated = false;
                 player.enabled = false;
             }
         }

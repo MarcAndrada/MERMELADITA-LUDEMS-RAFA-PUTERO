@@ -5017,7 +5017,7 @@ Transform:
   - {fileID: 4081709759035733412}
   - {fileID: 3103947419800948228}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4795275880160572073
 Rigidbody2D:
@@ -5107,7 +5107,7 @@ MonoBehaviour:
   dashDuration: 0.1
   dashCD: 2
   dashSR: {fileID: 6282854268846004843}
-  dashColor: {r: 0.3019608, g: 0.93333334, b: 0.91764706, a: 1}
+  dashColor: {r: 0.7254902, g: 0.08235294, b: 0.8, a: 1}
   moveParticle: {fileID: 8282470285470343508}
   loseCanvas: {fileID: 0}
 --- !u!114 &2662586093565422454

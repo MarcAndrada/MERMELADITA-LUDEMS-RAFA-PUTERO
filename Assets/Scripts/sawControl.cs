@@ -20,21 +20,6 @@ public class sawControl : MonoBehaviour
 
     private float scaleProcess;
 
-    private void Start()
-    {
-        transform.localScale = Vector3.zero;    
-    }
-
-    [SerializeField]
-    private float spawnSpeed;
-
-    [SerializeField]
-    private float minScale;
-    [SerializeField]
-    private float maxScale;
-
-    private float scaleProcess;
-
     private AudioSource aSource;
     private void Start()
     {
@@ -78,14 +63,6 @@ public class sawControl : MonoBehaviour
 
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            collision.GetComponent<PlayerController>().Die();
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
