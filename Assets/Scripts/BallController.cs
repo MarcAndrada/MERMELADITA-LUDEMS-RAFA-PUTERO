@@ -42,6 +42,7 @@ public class BallController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        aSource = GetComponent<AudioSource>();
         posToGo = (Player - transform.position).normalized;
         rb2d.AddForce(posToGo.normalized * speed,ForceMode2D.Impulse);
     }

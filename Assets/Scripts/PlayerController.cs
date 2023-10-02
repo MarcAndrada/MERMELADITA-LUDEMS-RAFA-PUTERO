@@ -75,9 +75,11 @@ public class PlayerController : MonoBehaviour
     private ParticleSystem moveParticle;
     [Space, SerializeField]
     private LoseController loseCanvas;
+    private AudioSource aSource;
 
     private void Awake()
     {
+        aSource = GetComponent<AudioSource>();
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         blast = GetComponent<BlastEffect>();
@@ -90,8 +92,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         inputValue = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-
- 
 
         RotatePlayer();
         Dash();
@@ -139,6 +139,8 @@ public class PlayerController : MonoBehaviour
         //Activar Parry
         if(Input.GetKey(KeyCode.Space) && !isParring && canParry)
         {
+            if(!aSource.isPlaying)
+                aSource.PlayOneShot(aSource.clip);
             isParring = true;
             canParry = false;
             StartCoroutine(blast.Blast());
