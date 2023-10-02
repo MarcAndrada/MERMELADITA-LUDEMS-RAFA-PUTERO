@@ -29,6 +29,9 @@ public class LaserAparition : MonoBehaviour
     [SerializeField] private float alphaValue;
     [SerializeField] private float fadeDuration;
 
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject cannon;
+
     #region PostProcessing
     [Header("PostProcessing")]
     [SerializeField] private Volume volume;
@@ -83,8 +86,10 @@ public class LaserAparition : MonoBehaviour
 
     public void StartShoot()
     {
+        transform.position = cannon.transform.position;
         spriteRenderer.enabled = true;
         fadeAnimation = true;
+        transform.right = (player.transform.position - transform.position).normalized;
     }
     
     public void FadeAnimation()
