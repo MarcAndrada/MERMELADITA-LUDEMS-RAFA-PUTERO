@@ -22,11 +22,32 @@ public class CanonController : MonoBehaviour
     private float timeToSpawnBall;
     [SerializeField]
     private float timeToSpawnLaser;
+    [SerializeField]
+    private float timeToSpawnSaw;
+
+    private bool canSpawnLaser;
+    private bool canSpawnSaw;
+
+    private void Awake()
+    {
+        canSpawnLaser = false;
+        canSpawnSaw = false;
+    }
 
     private void Start()
     {
-        Invoke("InstantitateBalls", timeToSpawnBall); 
-        Invoke("InstantitateLasers", timeToSpawnLaser); 
+        Invoke("InstantitateBalls", timeToSpawnBall);
+
+        if (canSpawnLaser)
+        {
+            print("Me instancio");
+            Invoke("InstantitateLasers", timeToSpawnLaser);
+        }
+        //if (canSpawnSaw)
+        //    Invoke("InstantiateSaws", timeToSpawnSaw);
+
+
+
     }
 
     // Update is called once per frame
@@ -50,5 +71,14 @@ public class CanonController : MonoBehaviour
         currentLaser.SetPlayer(player);
 
         Invoke("InstantitateLasers", timeToSpawnLaser);
+    }
+
+    public void SetCanSpawnLaser(bool value)
+    {
+        canSpawnLaser = value;
+    }
+    public void SetCanSpawnSaw(bool value)
+    {
+        canSpawnSaw = value;
     }
 }
