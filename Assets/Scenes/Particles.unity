@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a630ae82e71cf4cb447c83dda5d788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeColor: 0.5
+  changeColor: 0.3
   speed: 0.009
   mainCamera: {fileID: 0}
   fadeDelay: 2
