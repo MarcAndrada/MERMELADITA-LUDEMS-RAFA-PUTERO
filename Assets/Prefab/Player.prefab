@@ -169,12 +169,12 @@ MonoBehaviour:
   minScale: {x: 0.25, y: 0.25, z: 0.25}
   maxScale: {x: 0.4, y: 0.4, z: 0.4}
   parrySR: {fileID: 5606375237131763478}
-  parryColor: {r: 0.33752385, g: 1, b: 0.14509803, a: 1}
+  parryColor: {r: 0.22477067, g: 1, b: 0, a: 1}
   dashSpeed: 30
   dashDuration: 0.1
   dashCD: 2
   dashSR: {fileID: 6282854268846004843}
-  dashColor: {r: 0.08018869, g: 0.48260614, b: 1, a: 1}
+  dashColor: {r: 0, g: 0.43829775, b: 1, a: 1}
 --- !u!114 &2662586093565422454
 MonoBehaviour:
   m_ObjectHideFlags: 0
