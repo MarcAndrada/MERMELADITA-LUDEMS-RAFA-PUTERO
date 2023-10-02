@@ -17,9 +17,23 @@ public class TimerController : MonoBehaviour
     [SerializeField]
     CanonController canonController;
 
+    private bool timeEnded;
+
+    [SerializeField]
+    private GameObject player;
+
+    //Zoom
+
+    private Camera camera;
+
+    private bool zoomEnded;
+
     private void Awake()
     {
         timer = maxTimeOfGame;
+        timeEnded = false;
+        camera = Camera.main;
+        zoomEnded = false;
     }
     // Start is called before the first frame update
     void Start()
@@ -30,13 +44,29 @@ public class TimerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textToPrint.text = timer.ToString("0");
-        timer -= Time.deltaTime;
+        if(timer <= 0.1)
+        {
+            timeEnded = true;
+          
+            camera.transform.position = new Vector3(player.transform.position.x, player.transform.position.x, camera.transform.localPosition.z);
+            ZoomCamera();
+        }
+        if (timeEnded == false)
+        {
+            textToPrint.text = timer.ToString("0");
+            timer -= Time.deltaTime;
+        }
+    }
 
-        if (timer < 40)
-            canonController.SetCanSpawnLaser(true);
-        if(timer <= 20)
-            canonController.SetCanSpawnSaw(true);
+    void ZoomCamera()
+    {
+        if (camera.orthographicSize <= 0.01)
+        {
+            zoomEnded = true;
+
+        }
+        if(zoomEnded == false)
+            camera.orthographicSize -= Time.deltaTime;
     }
 
     public float GetTimer()

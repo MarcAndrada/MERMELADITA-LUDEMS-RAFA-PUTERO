@@ -104,5 +104,5 @@ MonoBehaviour:
   speed: 40
   timeToSpawnBall: 5
   timeToSpawnLaser: 3
-  timeToSpawnSaw: 0
+  timeToSpawnSaw: 8
   timerController: {fileID: 0}

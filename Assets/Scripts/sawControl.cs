@@ -19,6 +19,8 @@ public class sawControl : MonoBehaviour
 
     private bool bigger;
 
+    private GameObject player;
+
     private void Start()
     {
         mainCamera = Camera.main;
@@ -80,5 +82,10 @@ public class sawControl : MonoBehaviour
             spriteRenderer.color = newSpriteColor;
             yield return null;
         }
+    }
+
+    public void SetPlayer(GameObject _player)
+    {
+        player = _player;
     }
 }

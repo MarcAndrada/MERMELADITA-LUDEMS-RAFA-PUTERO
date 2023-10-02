@@ -136,6 +136,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5015033181610180657, guid: 76c2d86856ba28d4bb8c085904c1d760, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015033181610180657, guid: 76c2d86856ba28d4bb8c085904c1d760, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -419,9 +423,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3217ad12bc96ef24d9cb9ab812720af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTimeOfGame: 60
+  maxTimeOfGame: 2
   textToPrint: {fileID: 839062910}
   canonController: {fileID: 118468999}
+  player: {fileID: 0}
 --- !u!1 &883832158 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3494818009629027928, guid: 75a1335e7ef5dde4abfc4ba80ae052b4, type: 3}
@@ -928,6 +933,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 541352996}
+    - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
+      propertyPath: sierra
+      value: 
+      objectReference: {fileID: 1668433791985264040, guid: 0a776c1322db2524a82dafe676ddfc33, type: 3}
     - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
       propertyPath: timerController
       value: 

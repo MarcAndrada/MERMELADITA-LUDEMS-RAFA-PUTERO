@@ -14,6 +14,9 @@ public class CanonController : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
+    [SerializeField]
+    public GameObject sierra;
+
 
     [SerializeField]
     private float speed;
@@ -29,18 +32,13 @@ public class CanonController : MonoBehaviour
     [SerializeField]
     private float timeToSpawnSaw;
 
-    private bool canSpawnLaser;
-    private bool canSpawnSaw;
-
     [SerializeField]
     private TimerController timerController;
 
     private void Awake()
     {
-        canSpawnLaser = true;
-        canSpawnSaw = false;
         timeToSpawnFirstLaser = 20;
-        timeToSpawnFirstSaw = 40;
+        timeToSpawnFirstSaw = 1;
     }
 
     private void Start()
@@ -49,7 +47,7 @@ public class CanonController : MonoBehaviour
 
         Invoke("InstantitateLasers", timeToSpawnFirstLaser);
 
-        //Invoke("InstantiateSaws", timeToSpawnSaw);
+        Invoke("InstantiateSaws", timeToSpawnFirstSaw);
     }
 
     // Update is called once per frame
@@ -75,25 +73,16 @@ public class CanonController : MonoBehaviour
         Invoke("InstantitateLasers", timeToSpawnLaser);
     }
 
-    //private void InstantiateSaw()
-    //{
-    //    SawController currentSaw = Instantiate(timeToSpawnFirstSaw, transform.position, Quaternion.identity).GetComponent<SawController>();
-    //    currentSaw.SetPlayer(player);
-
-    //    Invoke("InstantiateSaw", timeToSpawnSaw);
-    //}
-
-    public void SetCanSpawnLaser(bool value)
+    private void InstantiateSaws()
     {
-        canSpawnLaser = value;
-    }
-    public void SetCanSpawnSaw(bool value)
-    {
-        canSpawnSaw = value;
+        sawControl currentSaw = Instantiate(sierra, transform.position, Quaternion.identity).GetComponent<sawControl>();
+        currentSaw.SetPlayer(player);
+
+        Invoke("InstantiateSaws", timeToSpawnSaw);
     }
 
     public void SetEnabled(bool value)
     {
-        enabled = value;
+        this.enabled = value;
     }
 }

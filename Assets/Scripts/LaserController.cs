@@ -23,7 +23,6 @@ public class LaserController : MonoBehaviour
     {
         rb2d.velocity = direction * speed;
     }
-
     public void SetPlayer(GameObject _player)
     {
         player = _player;
