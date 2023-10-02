@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour
     private BallController ballController;
     private TorusManager torusManager;
 
+
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -94,6 +95,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         inputValue = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+
+ 
 
         RotatePlayer();
         Dash();
@@ -285,12 +288,11 @@ public class PlayerController : MonoBehaviour
     #endregion
 
 
-
     public void Die() 
     {
         //desactivar spawns y player controller
 
-        FindObjectOfType<CanonController>().SetEnabled(false);
+        Destroy(FindObjectOfType<CanonController>().gameObject);
 
         //desactivar colision pelotas
         foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
@@ -303,7 +305,6 @@ public class PlayerController : MonoBehaviour
         }
 
         //hacer mas peque�o torus
-        //torusManager.Scale();
         FindObjectOfType<TorusManager>().Scale();
 
         //aparecer botones retry exit poco a poco

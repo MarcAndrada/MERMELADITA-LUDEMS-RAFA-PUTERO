@@ -45,6 +45,7 @@ public class BallController : MonoBehaviour
         {
             //Matar al player
             collision.gameObject.GetComponent<PlayerController>().Die();
+            Destroy(gameObject);
         }
         
         else if (collision.gameObject.CompareTag("Ball") && isParried)
