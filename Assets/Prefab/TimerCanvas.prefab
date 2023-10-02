@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTimeOfGame: 120
+  timer: 0
   textToPrint: {fileID: 4490985769722438505}
   canonController: {fileID: 0}
   player: {fileID: 0}
@@ -85,8 +86,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e94e6ef1064b5b845810ad4885d98b25, type: 2}
+  m_sharedMaterial: {fileID: 5270224765024230945, guid: e94e6ef1064b5b845810ad4885d98b25, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

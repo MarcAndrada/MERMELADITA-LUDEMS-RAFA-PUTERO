@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class BallController : MonoBehaviour
 {
@@ -24,8 +25,14 @@ public class BallController : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    private HitFreeze hitFreeze;
+
+    private AudioSource aSource;
+
     private void Awake()
     {
+        aSource = GetComponent<AudioSource>();
+        hitFreeze = GetComponent<HitFreeze>();
         rb2d = GetComponent<Rigidbody2D>();
         explosionParticle.Stop();
         col = GetComponent<Collider2D>();
@@ -70,9 +77,10 @@ public class BallController : MonoBehaviour
             rb2d.velocity = (transform.position - collider.transform.position).normalized * rb2d.velocity.magnitude;
             if (!explosionParticle.isPlaying)
                 explosionParticle.Play();
+            if (!aSource.isPlaying)
+                aSource.PlayOneShot(aSource.clip);
             spriteRenderer.color = parryColor;
-            
-               
+            hitFreeze.Stop(0.1f);
         }
     }
     public void SetPlayerPos(Vector3 _playerPos)
