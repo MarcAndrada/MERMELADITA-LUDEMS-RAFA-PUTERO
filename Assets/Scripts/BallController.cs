@@ -80,7 +80,7 @@ public class BallController : MonoBehaviour
             if (!aSource.isPlaying)
                 aSource.PlayOneShot(aSource.clip);
             spriteRenderer.color = parryColor;
-            hitFreeze.Stop(0.1f);
+            hitFreeze.Stop(0.05f);
         }
     }
     public void SetPlayerPos(Vector3 _playerPos)

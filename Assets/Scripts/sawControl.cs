@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class sawControl : MonoBehaviour
 {
@@ -19,8 +20,10 @@ public class sawControl : MonoBehaviour
 
     private float scaleProcess;
 
+    private AudioSource aSource;
     private void Start()
     {
+        aSource = GetComponent<AudioSource>();
         transform.localScale = Vector3.zero;    
     }
 
@@ -36,7 +39,6 @@ public class sawControl : MonoBehaviour
                     new Vector3(maxScale, maxScale, maxScale),
                     scaleProcess
                 );
-                
         }
         else
         {
@@ -44,7 +46,6 @@ public class sawControl : MonoBehaviour
         }
 
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
