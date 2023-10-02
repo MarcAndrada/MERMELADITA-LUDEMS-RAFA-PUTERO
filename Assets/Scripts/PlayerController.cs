@@ -32,6 +32,13 @@ public class PlayerController : MonoBehaviour
     private float lerpProcess;
     private bool isParring = false;
     private bool canParry = true;
+
+    [SerializeField]
+    private SpriteRenderer parrySR;
+    [SerializeField]
+    private Color parryColor;
+    private Color currentParryColor;
+    private float parryColorProcess;
     #endregion
 
     #region Dash Variables
@@ -47,6 +54,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 dashInput;
     private bool isDashing = false;
     private bool canDash = true;
+
+    [SerializeField]
+    private SpriteRenderer dashSR;
+    [SerializeField]
+    private Color dashColor;
+    private Color currentDashColor;
+    private float dashColorProcess;
+
     #endregion
 
     private Rigidbody2D rb2d;
@@ -144,10 +159,16 @@ public class PlayerController : MonoBehaviour
     {
         timeWaitedParryCD += Time.deltaTime;
 
+        //Cambiar el color gradualmente
+        parryColorProcess = timeWaitedParryCD / parryCD;
+        currentParryColor = Color.Lerp(parryColor, Color.white, parryColorProcess);
+        parrySR.color = currentParryColor;
+
         if (timeWaitedParryCD >= parryCD)
         {
             timeWaitedParryCD = 0;
             canParry = true;
+            parrySR.color = Color.white;
         }
 
     }
@@ -192,6 +213,7 @@ public class PlayerController : MonoBehaviour
             canDash = false;
             dashInput = inputValue;
             animator.SetTrigger("Dash");
+            dashSR.color = dashColor;
         }
 
         if (isDashing)
@@ -212,17 +234,29 @@ public class PlayerController : MonoBehaviour
         {
             isDashing = false;
             dashTimeWaited = 0;
+            dashColorProcess = 0;
         }
     }
 
     private void WaitDashCD()
     {
         dashTimeWaited += Time.deltaTime;
+
+        //Cambiar el color gradualmente
+        dashColorProcess = dashTimeWaited / dashCD;
+        currentDashColor = Color.Lerp(dashColor, Color.white, dashColorProcess);
+        dashSR.color = currentDashColor;
+        
         if (dashTimeWaited >= dashCD)
         {
             canDash = true;
             dashTimeWaited = 0;
+            dashSR.color = Color.white;
         }
+
+
+        
+
     }
     #endregion
 }
