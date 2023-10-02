@@ -71,13 +71,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb2d;
     private Animator animator;
     private BlastEffect blast;
-    [SerializeField]
+    [Space, SerializeField]
     private ParticleSystem moveParticle;
-
-    private CanonController canonController;
-    private BallController ballController;
-    private TorusManager torusManager;
-
+    [Space, SerializeField]
+    private LoseController loseCanvas;
 
     private void Awake()
     {
@@ -85,8 +82,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         blast = GetComponent<BlastEffect>();
         moveParticle.Stop();
-        canonController = GetComponent<CanonController>();
-        ballController = GetComponent<BallController>();
 
         minScaleV = new Vector3(minScale, minScale, minScale);
         maxScaleV = new Vector3(maxScale, maxScale, maxScale);
@@ -293,6 +288,9 @@ public class PlayerController : MonoBehaviour
         //desactivar spawns y player controller
 
         Destroy(FindObjectOfType<CanonController>().gameObject);
+        TimerController timer = FindObjectOfType<TimerController>();
+        float timeLeft = timer.GetTimer();
+        Destroy(FindObjectOfType<TimerController>().gameObject);
 
         //desactivar colision pelotas
         foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
@@ -307,11 +305,12 @@ public class PlayerController : MonoBehaviour
         //hacer mas peque�o torus
         FindObjectOfType<TorusManager>().Scale();
 
+        
         //aparecer botones retry exit poco a poco
+        loseCanvas.gameObject.SetActive(true);
+        loseCanvas.SetTimer(timeLeft);
 
-
-        //estadisticas
-
-        Destroy(gameObject);
+        Destroy(gameObject);     
     }
+
 }

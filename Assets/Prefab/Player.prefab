@@ -5109,6 +5109,7 @@ MonoBehaviour:
   dashSR: {fileID: 6282854268846004843}
   dashColor: {r: 0.3019608, g: 0.93333334, b: 0.91764706, a: 1}
   moveParticle: {fileID: 8282470285470343508}
+  loseCanvas: {fileID: 0}
 --- !u!114 &2662586093565422454
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TimerController : MonoBehaviour
 {
@@ -20,53 +21,58 @@ public class TimerController : MonoBehaviour
     private bool timeEnded;
 
     [SerializeField]
-    private GameObject player;
+    private PlayerController player;
 
     //Zoom
 
-    private Camera camera;
-
-    private bool zoomEnded;
+    private Camera cam;
 
     private void Awake()
     {
         timer = maxTimeOfGame;
         timeEnded = false;
-        camera = Camera.main;
-        zoomEnded = false;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        cam = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(timer <= 0.1)
-        {
-            timeEnded = true;
-          
-            camera.transform.position = new Vector3(player.transform.position.x, player.transform.position.x, camera.transform.localPosition.z);
-            ZoomCamera();
-        }
-        if (timeEnded == false)
+        
+
+        if (!timeEnded)
         {
             textToPrint.text = timer.ToString("0");
             timer -= Time.deltaTime;
+
+            if (timer <= 0)
+            {
+                canonController.gameObject.SetActive(false);
+                timeEnded = true;
+                cam.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, cam.transform.position.z);
+                player.GetComponent<Collider2D>().enabled = false;
+                player.enabled = false;
+            }
+        }
+        else
+        {
+            ZoomCamera();
         }
     }
 
     void ZoomCamera()
     {
-        if (camera.orthographicSize <= 0.01)
-        {
-            zoomEnded = true;
 
+        if (cam.orthographicSize <= 0.001)
+        {
+            //FIN
+            SceneManager.LoadScene("TitleScreenScene");
         }
-        if(zoomEnded == false)
-            camera.orthographicSize -= Time.deltaTime;
+        else
+        {
+            cam.orthographicSize -= Time.deltaTime;
+        }
+
+
     }
 
     public float GetTimer()

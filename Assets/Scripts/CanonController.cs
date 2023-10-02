@@ -60,7 +60,8 @@ public class CanonController : MonoBehaviour
     {
         Vector3 point = map.transform.position;
         Vector3 axis = new Vector3(0, 0, 1);
-        transform.RotateAround(point, axis, Time.deltaTime * speed);
+        float newSpeed = speed + Random.Range(-30, 200);
+        transform.RotateAround(point, axis, Time.deltaTime * newSpeed);
     }
 
     private void InstantitateBalls()
@@ -81,7 +82,6 @@ public class CanonController : MonoBehaviour
     private void InstantiateSaws()
     {
         sawControl currentSaw = Instantiate(sierra, transform.position, Quaternion.identity).GetComponent<sawControl>();
-        currentSaw.SetPlayer(player);
 
         Invoke("InstantiateSaws", timeToSpawnSaw);
     }
