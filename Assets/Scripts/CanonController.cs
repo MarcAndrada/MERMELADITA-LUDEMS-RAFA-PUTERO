@@ -91,4 +91,9 @@ public class CanonController : MonoBehaviour
     {
         canSpawnSaw = value;
     }
+
+    public void SetEnabled(bool value)
+    {
+        enabled = value;
+    }
 }

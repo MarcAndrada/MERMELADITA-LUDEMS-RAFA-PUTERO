@@ -74,12 +74,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private ParticleSystem moveParticle;
 
+    private CanonController canonController;
+    private BallController ballController;
+    private TorusManager torusManager;
+
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         blast = GetComponent<BlastEffect>();
         moveParticle.Stop();
+        canonController = GetComponent<CanonController>();
+        ballController = GetComponent<BallController>();
 
         minScaleV = new Vector3(minScale, minScale, minScale);
         maxScaleV = new Vector3(maxScale, maxScale, maxScale);
@@ -282,9 +288,29 @@ public class PlayerController : MonoBehaviour
 
     public void Die() 
     {
-        //Esta funcion se llama cuando el player recibe algun golpe (lo mata)
-        //TODO
+        //desactivar spawns y player controller
 
-        Debug.Log("HAS MUERTO");
+        FindObjectOfType<CanonController>().SetEnabled(false);
+
+        //desactivar colision pelotas
+        foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
+        {
+            if (ball != null)
+            {
+                ball.GetComponent<BallController>().SetCollisions(false);
+            }
+
+        }
+
+        //hacer mas peque�o torus
+        //torusManager.Scale();
+        FindObjectOfType<TorusManager>().Scale();
+
+        //aparecer botones retry exit poco a poco
+
+
+        //estadisticas
+
+        Destroy(gameObject);
     }
 }

@@ -15,6 +15,8 @@ public class BallController : MonoBehaviour
 
     private Rigidbody2D rb2d;
 
+    private Collider2D col;
+
     private bool isParried;
 
     [SerializeField] private ParticleSystem explosionParticle;
@@ -24,6 +26,7 @@ public class BallController : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         explosionParticle.Stop();
+        col = GetComponent<Collider2D>();
     }
 
     // Start is called before the first frame update
@@ -70,5 +73,10 @@ public class BallController : MonoBehaviour
     public void SetPlayerPos(Vector3 _playerPos)
     {
         Player = _playerPos;
+    }
+
+    public void SetCollisions(bool value)
+    {
+        col.enabled = value;
     }
 }
