@@ -51,6 +51,11 @@ public class LaserAparition : MonoBehaviour
     private Coroutine flashRoutine;
     #endregion
 
+    #region Timer
+    [Header("Timer")]
+    [SerializeField] private TimerController timer;
+    #endregion
+
     private void Start()
     {
         mainCamera = Camera.main;
@@ -67,12 +72,11 @@ public class LaserAparition : MonoBehaviour
         spriteRenderer.enabled = false;
         startVector = new Vector2(transform.localScale.x, 0);
         originalMaterial = spriteRenderer.material;
-        StartShoot();
     }
 
     private void Update()
     {
-        
+        LaserCannonSpawn();
         FadeAnimation();
         GrowLaser();
         ShrinkLaser();
@@ -82,6 +86,17 @@ public class LaserAparition : MonoBehaviour
     private void FixedUpdate()
     {
         _camera.ShakeCamera();
+    }
+
+    private void LaserCannonSpawn()
+    {
+        if(timer.timer <= 40 && timer.timer >= 0)
+        {
+            if (timer.timer % 7 <= 0.2f)
+            {
+                StartShoot();
+            }
+        }
     }
 
     public void StartShoot()

@@ -34,7 +34,6 @@ public class CanonController : MonoBehaviour
     [SerializeField]
     private float timeToSpawnSaw;
 
-    private float timeToSpawnFirstChargedLaser;
     [SerializeField]
     private float timeToSpawnChargedLaser;
 
@@ -45,7 +44,6 @@ public class CanonController : MonoBehaviour
     {
         timeToSpawnFirstLaser = 20;
         timeToSpawnFirstSaw = 30;
-        timeToSpawnFirstChargedLaser = 40;
     }
 
     private void Start()
@@ -55,8 +53,6 @@ public class CanonController : MonoBehaviour
         Invoke("InstantitateLasers", timeToSpawnFirstLaser);
 
         Invoke("InstantiateSaws", timeToSpawnFirstSaw);
-
-        Invoke("InstantiateChargedLaser", timeToSpawnFirstChargedLaser);
     }
 
     // Update is called once per frame
@@ -88,13 +84,6 @@ public class CanonController : MonoBehaviour
         currentSaw.SetPlayer(player);
 
         Invoke("InstantiateSaws", timeToSpawnSaw);
-    }
-
-    private void InstantiateChargedLaser()
-    {
-        LaserAparition currentChargedLaser = Instantiate(chargedLaser, transform.position, Quaternion.identity).GetComponent<LaserAparition>();
-        currentChargedLaser.SetPlayer(player);
-        Invoke("InstantiateChargedLaser", timeToSpawnChargedLaser);
     }
 
     public void SetEnabled(bool value)

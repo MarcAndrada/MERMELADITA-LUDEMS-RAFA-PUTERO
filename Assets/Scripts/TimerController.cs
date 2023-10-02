@@ -9,7 +9,7 @@ public class TimerController : MonoBehaviour
     [SerializeField]
     private float maxTimeOfGame;
 
-    private float timer;
+    [HideInInspector] public float timer;
 
     [SerializeField]
     private TextMeshProUGUI textToPrint;
