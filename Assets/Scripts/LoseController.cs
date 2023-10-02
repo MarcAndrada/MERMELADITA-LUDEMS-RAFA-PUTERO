@@ -7,6 +7,15 @@ public class LoseController : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI timeLeft;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.R))
+        {
+            ReloadScene();
+        }
+    }
+
     public void GoMainMenu()
     {
         SceneManager.LoadScene("TitleScreenScene");
