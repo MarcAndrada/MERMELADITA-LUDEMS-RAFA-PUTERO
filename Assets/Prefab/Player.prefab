@@ -273,12 +273,12 @@ MonoBehaviour:
   maxScale: 0.4
   parryColl: {fileID: 8860853304769748804}
   parrySR: {fileID: 5606375237131763478}
-  parryColor: {r: 0.33752385, g: 1, b: 0.14509803, a: 1}
+  parryColor: {r: 0.45490196, g: 0.93333334, b: 0.08235294, a: 1}
   dashSpeed: 30
   dashDuration: 0.1
   dashCD: 2
   dashSR: {fileID: 6282854268846004843}
-  dashColor: {r: 0.08018869, g: 0.48260614, b: 1, a: 1}
+  dashColor: {r: 0.3019608, g: 0.93333334, b: 0.91764706, a: 1}
 --- !u!114 &2662586093565422454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c779111b6e5a27488dfd1a91ed61fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsCount: 4
+  pointsCount: 25
   maxRadius: 0.75
   startRadius: 0
   speed: 7.5

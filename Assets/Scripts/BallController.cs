@@ -56,9 +56,8 @@ public class BallController : MonoBehaviour
         else if (collider.CompareTag("Parry"))
         {
             //Hacer que la pelota este parreada
-            Debug.Log("ME HAN PARREADO");
             isParried = true;
-            rb2d.velocity *= -1;
+            rb2d.velocity = (transform.position - collider.transform.position).normalized * rb2d.velocity.magnitude;
         }
     }
     public void SetPlayerPos(Vector3 _playerPos)

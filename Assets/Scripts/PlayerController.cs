@@ -223,6 +223,7 @@ public class PlayerController : MonoBehaviour
             dashInput = inputValue;
             animator.SetTrigger("Dash");
             dashSR.color = dashColor;
+            gameObject.layer = LayerMask.NameToLayer("PlayerDash");
         }
 
         if (isDashing)
@@ -244,6 +245,7 @@ public class PlayerController : MonoBehaviour
             isDashing = false;
             dashTimeWaited = 0;
             dashColorProcess = 0;
+            gameObject.layer = LayerMask.NameToLayer("Player");
         }
     }
 
