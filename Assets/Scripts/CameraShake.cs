@@ -46,10 +46,4 @@ public class CameraShake : MonoBehaviour
             }
         }
     }
-
-
-    void Update()
-    {
-       
-    }
 }

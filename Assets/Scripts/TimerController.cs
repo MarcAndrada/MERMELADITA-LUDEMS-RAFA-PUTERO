@@ -38,4 +38,9 @@ public class TimerController : MonoBehaviour
         if(timer <= 20)
             canonController.SetCanSpawnSaw(true);
     }
+
+    public float GetTimer()
+    {
+        return timer;
+    }
 }
