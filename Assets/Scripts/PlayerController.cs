@@ -26,12 +26,16 @@ public class PlayerController : MonoBehaviour
     private float parryCD = 1;
     private float timeWaitedParryCD = 0;
     [SerializeField]
-    private Vector3 minScale;
+    private float minScale;
+    private Vector3 minScaleV;
     [SerializeField]
-    private Vector3 maxScale;
+    private float maxScale;
+    private Vector3 maxScaleV;
     private float lerpProcess;
     private bool isParring = false;
     private bool canParry = true;
+    [SerializeField]
+    private Collider2D parryColl;
 
     [SerializeField]
     private SpriteRenderer parrySR;
@@ -73,6 +77,9 @@ public class PlayerController : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         blast = GetComponent<BlastEffect>();
+
+        minScaleV = new Vector3(minScale, minScale, minScale);
+        maxScaleV = new Vector3(maxScale, maxScale, maxScale);
     }
 
     void Update()
@@ -124,6 +131,7 @@ public class PlayerController : MonoBehaviour
             isParring = true;
             canParry = false;
             StartCoroutine(blast.Blast());
+            parryColl.enabled = true;
         }
 
         // Espera la duracion del parry
@@ -151,6 +159,7 @@ public class PlayerController : MonoBehaviour
             timeWaitedParring = 0;
             lerpProcess = 0;
             isParring = false;
+            parryColl.enabled = false;
         }
 		    
     }
@@ -184,9 +193,9 @@ public class PlayerController : MonoBehaviour
                 lerpProcess = 1;
             }
 
-            transform.localScale = Vector3.Lerp(minScale, maxScale, lerpProcess);
+            transform.localScale = Vector3.Lerp(minScaleV, maxScaleV, lerpProcess);
         }
-        else if (transform.localScale.x > minScale.x)
+        else if (transform.localScale.x > minScaleV.x)
         {
             lerpProcess += Time.deltaTime / 0.3f;
 
@@ -195,9 +204,9 @@ public class PlayerController : MonoBehaviour
                 lerpProcess = 1;
             }
 
-            transform.localScale = Vector3.Lerp(maxScale, minScale, lerpProcess);
+            transform.localScale = Vector3.Lerp(maxScaleV, minScaleV, lerpProcess);
             //Reseteamos el valor del lerp
-            if (transform.localScale.x == minScale.x)
+            if (transform.localScale.x == minScaleV.x)
                 lerpProcess = 0;
         }
     }
@@ -259,4 +268,14 @@ public class PlayerController : MonoBehaviour
 
     }
     #endregion
+
+
+
+    public void Die() 
+    {
+        //Esta funcion se llama cuando el player recibe algun golpe (lo mata)
+        //TODO
+
+        Debug.Log("HAS MUERTO");
+    }
 }

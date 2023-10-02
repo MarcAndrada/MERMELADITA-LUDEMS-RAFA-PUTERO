@@ -33,6 +33,7 @@ public class LaserController : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            collision.GetComponent<PlayerController>().Die();
             Debug.Log("Die and hot");
         }
     }

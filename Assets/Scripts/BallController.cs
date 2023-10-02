@@ -15,6 +15,9 @@ public class BallController : MonoBehaviour
 
     private Rigidbody2D rb2d;
 
+    private bool isParried;
+
+
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -27,11 +30,34 @@ public class BallController : MonoBehaviour
         rb2d.AddForce(posToGo.normalized * speed,ForceMode2D.Impulse);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && !isParried) 
+        {
+            //Matar al player
+            collision.gameObject.GetComponent<PlayerController>().Die();
+        }
+        
+        else if (collision.gameObject.CompareTag("Ball") && isParried)
+        {
+            //Romper ambas pelotas
+
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.CompareTag("BallTrigger"))
         {
             gameObject.layer = LayerMask.NameToLayer("Default"); 
+        }
+        else if (collider.CompareTag("Parry"))
+        {
+            //Hacer que la pelota este parreada
+            Debug.Log("ME HAN PARREADO");
+            isParried = true;
         }
     }
     public void SetPlayerPos(Vector3 _playerPos)

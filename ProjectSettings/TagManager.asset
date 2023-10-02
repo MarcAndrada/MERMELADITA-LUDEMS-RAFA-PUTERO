@@ -6,17 +6,18 @@ TagManager:
   tags:
   - Ball
   - BallTrigger
+  - Parry
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - OutsideBall
-  - 
-  - 
-  - 
+  - Parry
+  - Map
+  - PlayerDash
   - 
   - 
   - 
