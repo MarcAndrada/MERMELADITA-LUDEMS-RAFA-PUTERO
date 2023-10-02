@@ -102,7 +102,11 @@ MonoBehaviour:
   speed: 0.1
   fadeDelay: 0.95
   laserEndSize: 1
-  alphaValue: 0.5
+  alphaValue: 0.35
+  fadeDuration: 0
+  volume: {fileID: 0}
+  intesity: 0.5
+  lensSpeed: 0.1
   flashMaterial: {fileID: 2100000, guid: 780bbd24e480d974bad8e061951ca0ef, type: 2}
   duration: 0.75
 --- !u!61 &6155025157240451762

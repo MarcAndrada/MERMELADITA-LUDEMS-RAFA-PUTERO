@@ -6,11 +6,13 @@ public class TorusManager : MonoBehaviour
 {
     private ExpandObjectOnContact expansion;
     private BlastEffect blast;
+    private RandomSounds sound;
 
     private void Awake()
     {
         expansion = GetComponent<ExpandObjectOnContact>();
         blast = GetComponent<BlastEffect>();
+        sound = GetComponent<RandomSounds>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -20,6 +22,7 @@ public class TorusManager : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(expansion.GrowAndShrink());
             StartCoroutine(blast.Blast());
+            sound.Sounds();
         }
     }
 }
