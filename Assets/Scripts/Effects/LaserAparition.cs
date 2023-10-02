@@ -2,12 +2,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using static Unity.VisualScripting.Member;
 
 public class LaserAparition : MonoBehaviour
 {
     private Vector2 startVector;
     private BoxCollider2D laserCollision;
     private SpriteRenderer spriteRenderer;
+    private AudioSource aSource;
     private Material originalMaterial;
     private CameraShake _camera;
     private Camera mainCamera;
@@ -58,6 +60,7 @@ public class LaserAparition : MonoBehaviour
         laserCollision = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         _camera = mainCamera.GetComponent<CameraShake>();
+        aSource = GetComponent<AudioSource>();
 
         #endregion
 
@@ -103,6 +106,8 @@ public class LaserAparition : MonoBehaviour
                 transform.localScale = new Vector2(startVector.x, 0);
                 bigger = true;
                 Flash();
+                if (!aSource.isPlaying)
+                    aSource.PlayOneShot(aSource.clip);
             }
         }
     }
