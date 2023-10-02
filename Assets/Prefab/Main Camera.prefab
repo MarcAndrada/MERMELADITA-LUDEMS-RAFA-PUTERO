@@ -44,8 +44,8 @@ Camera:
   m_GameObject: {fileID: 9198743798883975406}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.11372549, g: 0.0627451, b: 0.0627451, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -150,8 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d01af75ec7026c4a9886a7443776496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeIntensity: 0.1
-  EarthIntensity: 0.1
-  shakeTime: 0.3
+  shakeIntensity: 0.2
+  EarthIntensity: 0.2
+  shakeTime: 0.7
   timer: 0
   shakeCamera: 0

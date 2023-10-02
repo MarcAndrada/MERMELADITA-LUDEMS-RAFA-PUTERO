@@ -99,12 +99,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeColor: 0.3
-  speed: 0.01
+  speed: 0.1
   fadeDelay: 0.95
-  laserEndSize: 0.75
+  laserEndSize: 1
   alphaValue: 0.5
   flashMaterial: {fileID: 2100000, guid: 780bbd24e480d974bad8e061951ca0ef, type: 2}
-  duration: 0.05
+  duration: 0.75
 --- !u!61 &6155025157240451762
 BoxCollider2D:
   m_ObjectHideFlags: 0
