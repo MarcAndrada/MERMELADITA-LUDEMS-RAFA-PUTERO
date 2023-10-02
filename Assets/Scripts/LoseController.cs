@@ -20,7 +20,7 @@ public class LoseController : MonoBehaviour
 
     public void SetTimer(float _timeLeft) 
     {
-        timeLeft.text = "You survived " + (120 - _timeLeft).ToString("0") + " seconds";
+        timeLeft.text = "You survived " + (60 - _timeLeft).ToString("0") + " seconds";
     }
 
 }

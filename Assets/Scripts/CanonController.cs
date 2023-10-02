@@ -48,7 +48,7 @@ public class CanonController : MonoBehaviour
     private void Awake()
     {
         timeToSpawnFirstLaser = 30;
-        timeToSpawnFirstSaw = 60;
+        timeToSpawnFirstSaw = 20;
     }
 
     private void Start()

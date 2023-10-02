@@ -1486,6 +1486,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 541352996}
     - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
+      propertyPath: timeToSpawnBall
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
       propertyPath: timerController
       value: 
       objectReference: {fileID: 839062912}

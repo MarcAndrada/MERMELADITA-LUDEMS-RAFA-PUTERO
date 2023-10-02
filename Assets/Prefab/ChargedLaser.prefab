@@ -111,7 +111,7 @@ MonoBehaviour:
   lensSpeed: 0.1
   flashMaterial: {fileID: 2100000, guid: 780bbd24e480d974bad8e061951ca0ef, type: 2}
   duration: 0.75
-  maxTimer: 100
+  maxTimer: 40
   timeBetweenShoots: 5
   timer: {fileID: 0}
 --- !u!61 &6155025157240451762
