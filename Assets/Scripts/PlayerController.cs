@@ -284,7 +284,6 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-
     public void Die() 
     {
         //desactivar spawns y player controller

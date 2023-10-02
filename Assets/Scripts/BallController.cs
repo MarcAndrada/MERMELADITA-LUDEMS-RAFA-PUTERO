@@ -31,7 +31,6 @@ public class BallController : MonoBehaviour
 
     private void Awake()
     {
-        aSource = GetComponent<AudioSource>();
         hitFreeze = GetComponent<HitFreeze>();
         rb2d = GetComponent<Rigidbody2D>();
         explosionParticle.Stop();
@@ -81,7 +80,7 @@ public class BallController : MonoBehaviour
             if (!aSource.isPlaying)
                 aSource.PlayOneShot(aSource.clip);
             spriteRenderer.color = parryColor;
-            hitFreeze.Stop(0.05f);
+            hitFreeze.Stop(0.025f, 0.5f);
         }
     }
     public void SetPlayerPos(Vector3 _playerPos)
