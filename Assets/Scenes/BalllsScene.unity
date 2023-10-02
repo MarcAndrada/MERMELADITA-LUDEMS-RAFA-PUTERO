@@ -938,12 +938,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1668433791985264040, guid: 0a776c1322db2524a82dafe676ddfc33, type: 3}
     - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
+      propertyPath: chargedLaser
+      value: 
+      objectReference: {fileID: 5488051938873210119, guid: 6b2b9f52a3be3c84589bbae2c501c630, type: 3}
+    - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
       propertyPath: timerController
       value: 
       objectReference: {fileID: 839062912}
     - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
       propertyPath: timeToSpawnChargedLaser
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3974365007846975917, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
       propertyPath: m_RootOrder
