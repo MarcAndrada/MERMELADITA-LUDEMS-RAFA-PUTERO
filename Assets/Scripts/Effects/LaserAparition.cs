@@ -67,11 +67,12 @@ public class LaserAparition : MonoBehaviour
         spriteRenderer.enabled = false;
         startVector = new Vector2(transform.localScale.x, 0);
         originalMaterial = spriteRenderer.material;
+        StartShoot();
     }
 
     private void Update()
     {
-        StartShoot();
+        
         FadeAnimation();
         GrowLaser();
         ShrinkLaser();
