@@ -53,6 +53,8 @@ public class LaserAparition : MonoBehaviour
 
     #region Timer
     [Header("Timer")]
+    [SerializeField] private float maxTimer;
+    [SerializeField] private float timeBetweenShoots;
     [SerializeField] private TimerController timer;
     #endregion
 
@@ -83,6 +85,15 @@ public class LaserAparition : MonoBehaviour
         UnFadeAnimation();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            //Matar al player
+            collision.gameObject.GetComponent<PlayerController>().Die();
+        }
+    }
+
     private void FixedUpdate()
     {
         _camera.ShakeCamera();
@@ -90,7 +101,7 @@ public class LaserAparition : MonoBehaviour
 
     private void LaserCannonSpawn()
     {
-        if(timer.timer <= 40 && timer.timer >= 0)
+        if(timer.timer <= maxTimer && timer.timer >= 0)
         {
             if (timer.timer % 7 <= 0.2f)
             {

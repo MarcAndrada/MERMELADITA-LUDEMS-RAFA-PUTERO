@@ -281,6 +281,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39f8b0105a24204b93529c39a7ef5b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &541353007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541352996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52fc3188f7ce66146bb9913ca9f1219b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &822228686 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8716855625351793501, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
@@ -365,7 +377,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6004080612864893713, guid: ece40cb0b94b48b478aa3484aeea36e5, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 541353007}
   m_SourcePrefab: {fileID: 100100000, guid: ece40cb0b94b48b478aa3484aeea36e5, type: 3}
 --- !u!1 &1628148480
 GameObject:
@@ -506,6 +521,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChargedLaser
       objectReference: {fileID: 0}
+    - target: {fileID: 7842772864112547767, guid: 6b2b9f52a3be3c84589bbae2c501c630, type: 3}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 839062912}
     - target: {fileID: 7842772864112547767, guid: 6b2b9f52a3be3c84589bbae2c501c630, type: 3}
       propertyPath: cannon
       value: 
