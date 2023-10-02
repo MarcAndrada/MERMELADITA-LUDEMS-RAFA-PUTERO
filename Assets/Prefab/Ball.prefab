@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   explosionParticle: {fileID: 5399746538361978394}
+  parryColor: {r: 0.45490196, g: 0.93333334, b: 0.08235294, a: 1}
 --- !u!50 &8971971119296026690
 Rigidbody2D:
   serializedVersion: 4

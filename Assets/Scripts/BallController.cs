@@ -20,13 +20,16 @@ public class BallController : MonoBehaviour
     private bool isParried;
 
     [SerializeField] private ParticleSystem explosionParticle;
+    [SerializeField] private Color parryColor;
 
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         explosionParticle.Stop();
         col = GetComponent<Collider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Start is called before the first frame update
@@ -66,6 +69,7 @@ public class BallController : MonoBehaviour
             rb2d.velocity = (transform.position - collider.transform.position).normalized * rb2d.velocity.magnitude;
             if (!explosionParticle.isPlaying)
                 explosionParticle.Play();
+            spriteRenderer.color = parryColor;
             
                
         }
