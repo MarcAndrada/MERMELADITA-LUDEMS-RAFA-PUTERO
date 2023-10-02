@@ -45,6 +45,7 @@ public class TorusManager : MonoBehaviour
     public void Scale()
     {
         needScale = true;
+        GetComponent<Collider2D>().enabled = false;
     }
 
     public void Scale2()

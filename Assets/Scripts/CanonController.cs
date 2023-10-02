@@ -40,10 +40,13 @@ public class CanonController : MonoBehaviour
     [SerializeField]
     private TimerController timerController;
 
+    [SerializeField]
+    private List<Transform> sawSpawnPoints;
+
     private void Awake()
     {
         timeToSpawnFirstLaser = 20;
-        timeToSpawnFirstSaw = 30;
+        timeToSpawnFirstSaw = 0;
     }
 
     private void Start()
@@ -81,7 +84,9 @@ public class CanonController : MonoBehaviour
 
     private void InstantiateSaws()
     {
-        sawControl currentSaw = Instantiate(sierra, transform.position, Quaternion.identity).GetComponent<sawControl>();
+        int randomPoint = Random.Range(0, sawSpawnPoints.Count);
+        Instantiate(sierra, sawSpawnPoints[randomPoint].position, Quaternion.identity).GetComponent<sawControl>();
+        sawSpawnPoints.RemoveAt(randomPoint);
 
         Invoke("InstantiateSaws", timeToSpawnSaw);
     }

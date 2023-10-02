@@ -305,6 +305,11 @@ public class PlayerController : MonoBehaviour
         //hacer mas peque�o torus
         FindObjectOfType<TorusManager>().Scale();
 
+        sawControl[] saws = FindObjectsOfType<sawControl>();
+        foreach (var item in saws)
+        {
+            Destroy(item.gameObject);
+        }
         
         //aparecer botones retry exit poco a poco
         loseCanvas.gameObject.SetActive(true);
