@@ -424,7 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3217ad12bc96ef24d9cb9ab812720af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTimeOfGame: 42
+  maxTimeOfGame: 60
   textToPrint: {fileID: 839062910}
   canonController: {fileID: 118468999}
 --- !u!1 &883832158 stripped
@@ -757,6 +757,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 541352996}
+    - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
+      propertyPath: timerController
+      value: 
+      objectReference: {fileID: 839062912}
     - target: {fileID: 3974365007846975917, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
       propertyPath: m_RootOrder
       value: 1
