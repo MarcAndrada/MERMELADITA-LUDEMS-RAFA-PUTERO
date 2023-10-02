@@ -12,7 +12,6 @@ public class LaserController : MonoBehaviour
 
     private Vector2 direction;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -20,12 +19,10 @@ public class LaserController : MonoBehaviour
         transform.right = ((transform.position + (Vector3)direction) - transform.position) * -1;
     }
 
-    // Update is called once per frame
     void Update()
     {
         rb2d.velocity = direction * speed;
     }
-
 
     public void SetPlayer(GameObject _player)
     {

@@ -10,15 +10,26 @@ public class LaserAparition : MonoBehaviour
     private BoxCollider2D laserCollision;
     private SpriteRenderer spriteRenderer;
     private CameraShake _camera;
+    private Camera mainCamera;
+
+    #region Float Values 
+    private float alphaValue = 1;
+    #endregion
+
+    #region Boolean Values
+    private bool bigger;
+    private bool fadeAnimation;
+    #endregion
 
     [SerializeField] private float changeColor;
     [SerializeField] private float speed;
-    [SerializeField] private Camera mainCamera;
     [SerializeField] private float fadeDelay;
-    [SerializeField] private float alphaValue;
+    [SerializeField] private float laserEndSize;
 
-    private bool bigger;
-   
+    #region FlashEffect
+    [SerializeField] private Material flashMaterial;
+
+    #endregion
     private void Start()
     {
         mainCamera = Camera.main;
@@ -40,7 +51,6 @@ public class LaserAparition : MonoBehaviour
         {
             bigger = true;
         }
-
         Laser();
     }
 
@@ -51,23 +61,30 @@ public class LaserAparition : MonoBehaviour
 
     private void Laser()
     {
-        if(bigger)
+        if (bigger)
         {
+            fadeAnimation = true;
+
             transform.localScale = new Vector2(startVector.x, startVector.y + speed);
-
-
-            StartCoroutine(LaserFade(alphaValue, fadeDelay));
-
             startVector = transform.localScale;
 
-            if(startVector.y >= 0.5) 
+            if (startVector.y >= laserEndSize)
             {
                 bigger = false;
+            }
+        }
+
+        if (fadeAnimation)
+        {
+            StartCoroutine(LaserFade(alphaValue, fadeDelay));
+
+            if (spriteRenderer.color.a >= 0.8f)
+            {
                 laserCollision.enabled = true;
                 _camera.shakeCamera = true;
+                fadeAnimation = false;
             }
-
-        }   
+        }
     }
 
     IEnumerator LaserFade(float alphaValue, float fadeDelay)
@@ -77,9 +94,15 @@ public class LaserAparition : MonoBehaviour
         {
             Color newSpriteColor = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, Mathf.Lerp(alpha, alphaValue, t));
             spriteRenderer.color = newSpriteColor;
+
             yield return null;
+
         }
     }
-
-  
+    /*
+    IEnumerator Flash()
+    {
+        spriteRenderer.material = flashMaterial;
+    }
+    */
 }
