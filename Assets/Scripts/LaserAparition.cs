@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,27 +10,33 @@ public class LaserAparition : MonoBehaviour
     private Vector2 startVector;
     private BoxCollider2D laserCollision;
     private SpriteRenderer spriteRenderer;
+    private Material originalMaterial;
     private CameraShake _camera;
     private Camera mainCamera;
 
-    #region Float Values 
-    private float alphaValue = 1;
-    #endregion
-
     #region Boolean Values
+
     private bool bigger;
+    private bool small;
+
     private bool fadeAnimation;
+
     #endregion
 
     [SerializeField] private float changeColor;
     [SerializeField] private float speed;
     [SerializeField] private float fadeDelay;
     [SerializeField] private float laserEndSize;
+    [SerializeField] private float alphaValue;
 
     #region FlashEffect
+    [Header("FlashEffect")]
     [SerializeField] private Material flashMaterial;
+    [SerializeField] private float duration;
 
+    private Coroutine flashRoutine;
     #endregion
+
     private void Start()
     {
         mainCamera = Camera.main;
@@ -42,16 +49,21 @@ public class LaserAparition : MonoBehaviour
 
         #endregion
 
-        startVector = transform.localScale;
+        spriteRenderer.enabled = false;
+        startVector = new Vector2(transform.localScale.x, 0);
+        originalMaterial = spriteRenderer.material;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            bigger = true;
+            spriteRenderer.enabled = true;
+            fadeAnimation = true;
         }
-        Laser();
+        FadeAnimation();
+        GrowLaser();
+        ShrinkLaser();
     }
 
     private void FixedUpdate()
@@ -59,32 +71,61 @@ public class LaserAparition : MonoBehaviour
         _camera.ShakeCamera();
     }
 
-    private void Laser()
+    private void GrowLaser()
     {
         if (bigger)
         {
-            fadeAnimation = true;
-
             transform.localScale = new Vector2(startVector.x, startVector.y + speed);
             startVector = transform.localScale;
 
             if (startVector.y >= laserEndSize)
             {
+                laserCollision.enabled = true;
+                _camera.shakeCamera = true;
+                fadeAnimation = false;
                 bigger = false;
             }
         }
+    }
+    private void ShrinkLaser()
+    {
+        if (small)
+        {
+            transform.localScale = new Vector2(startVector.x, startVector.y - speed);
+            startVector = transform.localScale;
 
+            if (startVector.y < 0)
+            {
+                Destroy(gameObject);
+                small = false;
+            }
+        }
+    }
+
+    public void FadeAnimation()
+    {
         if (fadeAnimation)
         {
             StartCoroutine(LaserFade(alphaValue, fadeDelay));
 
-            if (spriteRenderer.color.a >= 0.8f)
+            if (spriteRenderer.color.a >= alphaValue - 0.05f)
             {
-                laserCollision.enabled = true;
-                _camera.shakeCamera = true;
-                fadeAnimation = false;
+                // Reset Size
+                transform.localScale = new Vector2(startVector.x, 0);
+                bigger = true;
+                Flash();
             }
         }
+    }
+
+    public void Flash()
+    {
+        if(flashRoutine != null)
+        {
+            StopCoroutine(flashRoutine);
+        }
+
+        flashRoutine = StartCoroutine(FlashRoutine());
     }
 
     IEnumerator LaserFade(float alphaValue, float fadeDelay)
@@ -96,13 +137,16 @@ public class LaserAparition : MonoBehaviour
             spriteRenderer.color = newSpriteColor;
 
             yield return null;
-
         }
     }
-    /*
-    IEnumerator Flash()
+    
+    IEnumerator FlashRoutine()
     {
         spriteRenderer.material = flashMaterial;
+        yield return new WaitForSeconds(duration);
+        spriteRenderer.material = originalMaterial;
+        flashRoutine = null;
+        small = true;
     }
-    */
+
 }

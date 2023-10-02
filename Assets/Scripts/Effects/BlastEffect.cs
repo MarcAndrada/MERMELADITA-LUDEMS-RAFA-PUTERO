@@ -40,7 +40,7 @@ public class BlastEffect : MonoBehaviour
             Vector2 dir = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle));
             Vector2 pos = dir * currentRadius;
 
-            lineRenderer.SetPosition(i, pos);
+            lineRenderer.SetPosition(i, new Vector2(pos.x + transform.position.x, pos.y + transform.position.y));
         }
 
         lineRenderer.widthMultiplier = Mathf.Lerp(0f, startWidth, 1f - currentRadius / maxRadius);
