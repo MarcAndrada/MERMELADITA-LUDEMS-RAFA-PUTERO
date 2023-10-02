@@ -71,12 +71,15 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb2d;
     private Animator animator;
     private BlastEffect blast;
+    [SerializeField]
+    private ParticleSystem moveParticle;
 
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         blast = GetComponent<BlastEffect>();
+        moveParticle.Stop();
 
         minScaleV = new Vector3(minScale, minScale, minScale);
         maxScaleV = new Vector3(maxScale, maxScale, maxScale);
@@ -98,11 +101,15 @@ public class PlayerController : MonoBehaviour
         {
             if (inputValue == Vector2.zero)
             {
+                if(!moveParticle.isStopped)
+                    moveParticle.Stop();
                 acceleration = 0;
                 animator.SetBool("Moving", false);
             }
             else
             {
+                if(!moveParticle.isPlaying)
+                    moveParticle.Play();
                 acceleration += accelerationSpeed * Time.deltaTime;
                 animator.SetBool("Moving", true);
             }
@@ -116,7 +123,7 @@ public class PlayerController : MonoBehaviour
     }
     private void RotatePlayer() 
     {
-        Vector3 lookAtPos = ((transform.position + (Vector3)inputValue * 10) - transform.position) * - 1;
+        Vector3 lookAtPos = ((transform.position + (Vector3)inputValue * 20) - transform.position) * - 1;
 
         transform.up = Vector3.Lerp(transform.up, lookAtPos, Time.deltaTime * rotationSpeed);
     }

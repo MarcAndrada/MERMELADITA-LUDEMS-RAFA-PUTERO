@@ -17,10 +17,13 @@ public class BallController : MonoBehaviour
 
     private bool isParried;
 
+    [SerializeField] private ParticleSystem explosionParticle;
+
 
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        explosionParticle.Stop();
     }
 
     // Start is called before the first frame update
@@ -58,6 +61,10 @@ public class BallController : MonoBehaviour
             //Hacer que la pelota este parreada
             isParried = true;
             rb2d.velocity = (transform.position - collider.transform.position).normalized * rb2d.velocity.magnitude;
+            if (!explosionParticle.isPlaying)
+                explosionParticle.Play();
+            
+               
         }
     }
     public void SetPlayerPos(Vector3 _playerPos)
