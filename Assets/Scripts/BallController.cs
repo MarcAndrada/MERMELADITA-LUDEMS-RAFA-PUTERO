@@ -58,6 +58,7 @@ public class BallController : MonoBehaviour
             //Hacer que la pelota este parreada
             Debug.Log("ME HAN PARREADO");
             isParried = true;
+            rb2d.velocity *= -1;
         }
     }
     public void SetPlayerPos(Vector3 _playerPos)

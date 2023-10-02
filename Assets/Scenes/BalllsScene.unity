@@ -496,9 +496,25 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.5529412
       objectReference: {fileID: 0}
+    - target: {fileID: 2270980806781509926, guid: ece40cb0b94b48b478aa3484aeea36e5, type: 3}
+      propertyPath: parryDuration
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 6004080612864893713, guid: ece40cb0b94b48b478aa3484aeea36e5, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159204418138612856, guid: ece40cb0b94b48b478aa3484aeea36e5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8860853304769748804, guid: ece40cb0b94b48b478aa3484aeea36e5, type: 3}
+      propertyPath: m_Radius
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8860853304769748804, guid: ece40cb0b94b48b478aa3484aeea36e5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
