@@ -8,6 +8,8 @@ public class TorusManager : MonoBehaviour
     private BlastEffect blast;
     private RandomSounds sound;
 
+    public bool needScale = false;
+
     [SerializeField]
     private Vector3 finalScale;
     private Vector3 startScale;
@@ -24,6 +26,11 @@ public class TorusManager : MonoBehaviour
         startScale = transform.localScale;
     }
 
+    private void Update()
+    {
+        Scale2();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ball"))
@@ -37,12 +44,21 @@ public class TorusManager : MonoBehaviour
 
     public void Scale()
     {
-        while (timer <= 1.0)
+        needScale = true;
+    }
+
+    public void Scale2()
+    {
+        if (needScale)
         {
-            Debug.Log("aaa");
-            timer += Time.deltaTime * scaleDuration;
+            timer += Time.deltaTime / scaleDuration;
             Vector3 newScale = Vector3.Lerp(startScale, finalScale, timer);
             transform.localScale = newScale;
+            if (timer > 1.0f) 
+            {
+                needScale = false;
+                transform.localScale = finalScale;
+            }
         }
     }
 }
