@@ -16,15 +16,17 @@ public class MainMenu : MonoBehaviour
         switch (difficultyController.GetDifficulty())
         {
             case DifficultyController.Difficulty.EASY:
+                SceneManager.LoadScene("EasyScene");
                 break;
             case DifficultyController.Difficulty.NORMAL:
+                SceneManager.LoadScene("NormalScene");
                 break;
             case DifficultyController.Difficulty.HARD:
+                SceneManager.LoadScene("HardScene");
                 break;
             default:
                 break;
         }
-        SceneManager.LoadScene("BalllsScene");
     }
 
     public void ExitGame()
@@ -35,5 +37,10 @@ public class MainMenu : MonoBehaviour
     public void GoToCredits()
     {
         SceneManager.LoadScene("CreditsScene");
+    }
+
+    public void GoToHowToPlay() 
+    {
+        SceneManager.LoadScene("HowToPlayScene");
     }
 }

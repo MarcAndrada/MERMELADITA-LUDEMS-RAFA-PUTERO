@@ -23,35 +23,26 @@ public class CanonController : MonoBehaviour
     [SerializeField]
     private float speed;
 
-    [SerializeField]
+    [Space, SerializeField]
     private float timeToSpawnBall;
 
+    [Space, SerializeField]
     private float timeToSpawnFirstLaser;
     [SerializeField]
     private float timeToSpawnLaser;
 
+    [Space, SerializeField]
     private float timeToSpawnFirstSaw;
     [SerializeField]
     private float timeToSpawnSaw;
 
-    [SerializeField]
-    private float timeToSpawnChargedLaser;
 
-    [SerializeField]
-    private TimerController timerController;
 
-    [SerializeField]
+    [Space, SerializeField]
     private List<Transform> sawSpawnPoints;
 
     private AudioSource aSource;
 
-    private void Awake()
-    {
-        timeToSpawnFirstLaser = 20;
-        timeToSpawnFirstSaw = 0;
-        timeToSpawnFirstLaser = 30;
-        timeToSpawnFirstSaw = 20;
-    }
 
     private void Start()
     {
@@ -69,7 +60,7 @@ public class CanonController : MonoBehaviour
     {
         Vector3 point = map.transform.position;
         Vector3 axis = new Vector3(0, 0, 1);
-        float newSpeed = speed + Random.Range(-30, 200);
+        float newSpeed = speed + Random.Range(-30, 300);
         transform.RotateAround(point, axis, Time.deltaTime * newSpeed);
     }
 

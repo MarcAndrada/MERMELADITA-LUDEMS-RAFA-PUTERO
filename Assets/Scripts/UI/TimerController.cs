@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class TimerController : MonoBehaviour
 {
     [SerializeField]
-    private float maxTimeOfGame;
+    public float maxTimeOfGame;
 
     [HideInInspector] public float timer;
 

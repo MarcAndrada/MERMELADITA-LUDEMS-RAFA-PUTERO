@@ -8,6 +8,11 @@ public class LoseController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI timeLeft;
 
+    private TimerController timerController;
+    private void Awake()
+    {
+        timerController = FindObjectOfType<TimerController>();
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.R))
@@ -29,7 +34,8 @@ public class LoseController : MonoBehaviour
 
     public void SetTimer(float _timeLeft) 
     {
-        timeLeft.text = "You survived " + (60 - _timeLeft).ToString("0") + " seconds";
+        timeLeft.text = "You survived " + (timerController.maxTimeOfGame - _timeLeft).ToString("0") + " seconds";
+        Debug.Log("Time " + timerController.maxTimeOfGame + " - Left " + _timeLeft);
     }
 
 }
