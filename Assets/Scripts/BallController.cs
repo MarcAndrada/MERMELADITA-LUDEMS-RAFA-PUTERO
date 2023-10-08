@@ -66,19 +66,24 @@ public class BallController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("BallTrigger"))
+        if (collider.CompareTag("BallTrigger") && gameObject.layer == LayerMask.NameToLayer("OutsideBall"))
         {
             gameObject.layer = LayerMask.NameToLayer("Default"); 
         }
-        else if (collider.CompareTag("Parry"))
+        else if (collider.CompareTag("Parry") )
         {
             //Hacer que la pelota este parreada
             isParried = true;
+            gameObject.layer = LayerMask.NameToLayer("Parried");
             rb2d.velocity = (transform.position - collider.transform.position).normalized * rb2d.velocity.magnitude;
             if (!explosionParticle.isPlaying)
+            {
                 explosionParticle.Play();
+            }
             if (!aSource.isPlaying)
+            {
                 aSource.PlayOneShot(aSource.clip);
+            }
             spriteRenderer.color = parryColor;
             hitFreeze.Stop(0.025f, 0.5f);
         }
