@@ -1493,6 +1493,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
+      propertyPath: timeToSpawnChargedLaser
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
       propertyPath: sawSpawnPoints.Array.data[0]
       value: 
       objectReference: {fileID: 909937291}

@@ -36,7 +36,10 @@ public class CanonController : MonoBehaviour
     [SerializeField]
     private float timeToSpawnSaw;
 
-
+    [Space, SerializeField]
+    public float timeToSpawnFirstChargedLaser;
+    [SerializeField]
+    public float timeToSpawnChargedLaser;
 
     [Space, SerializeField]
     private List<Transform> sawSpawnPoints;

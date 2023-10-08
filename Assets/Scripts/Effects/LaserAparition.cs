@@ -53,9 +53,9 @@ public class LaserAparition : MonoBehaviour
 
     #region Timer
     [Header("Timer")]
-    [SerializeField] private float maxTimer;
-    [SerializeField] private float timeBetweenShoots;
     [SerializeField] private TimerController timer;
+    private float timeBetweenShoots = 0;
+    private CanonController canonController;
     #endregion
 
     private void Start()
@@ -68,6 +68,7 @@ public class LaserAparition : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         _camera = mainCamera.GetComponent<CameraShake>();
         aSource = GetComponent<AudioSource>();
+        canonController = FindObjectOfType<CanonController>();
 
         #endregion
 
@@ -101,11 +102,13 @@ public class LaserAparition : MonoBehaviour
 
     private void LaserCannonSpawn()
     {
-        if(timer.timer <= maxTimer && timer.timer >= 0)
+        if(timer.timer <= canonController.timeToSpawnFirstChargedLaser && timer.timer >= 0)
         {
-            if (timer.timer % 7 <= 0.2f)
+            timeBetweenShoots += Time.deltaTime;
+            if (canonController.timeToSpawnChargedLaser <= timeBetweenShoots)
             {
                 StartShoot();
+                timeBetweenShoots = 0;
             }
         }
     }

@@ -1474,7 +1474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
       propertyPath: timeToSpawnBall
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
       propertyPath: timerController
@@ -1482,7 +1482,7 @@ PrefabInstance:
       objectReference: {fileID: 839062912}
     - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
       propertyPath: timeToSpawnLaser
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
       propertyPath: timeToSpawnFirstSaw
@@ -1491,6 +1491,10 @@ PrefabInstance:
     - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
       propertyPath: timeToSpawnFirstLaser
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
+      propertyPath: timeToSpawnChargedLaser
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
       propertyPath: sawSpawnPoints.Array.data[0]
@@ -1532,6 +1536,10 @@ PrefabInstance:
       propertyPath: sawSpawnPoints.Array.data[9]
       value: 
       objectReference: {fileID: 969334294}
+    - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
+      propertyPath: timeToSpawnFirstChargedLaser
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3350596519779784891, guid: 522aa71a3ba2e67409dd2f1474f5d2ff, type: 3}
       propertyPath: sawSpawnPoints.Array.data[10]
       value: 
